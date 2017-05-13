@@ -139,7 +139,24 @@
         </div>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <h1 id="1-Python介绍"><a href="#1-Python介绍" class="headerlink" title="1.Python介绍"></a>1.Python介绍</h1><p>python的创始人为吉多·范罗苏姆（Guido van Rossum）。1989年的圣诞节期间，吉多·范罗苏姆为了在阿姆斯特丹打发时间，决心开发一个新的脚本解释程序，作为ABC语言的一种继承。  </p>
+          <h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><ol>
+<li>Python介绍</li>
+<li>发展史</li>
+<li>Python安装</li>
+<li>第一个Python程序</li>
+<li>变量</li>
+<li>字符编码</li>
+<li>用户输入</li>
+<li>模块初识</li>
+<li>.pyc认识</li>
+<li>数据类型初识</li>
+<li>数据运算</li>
+<li>表达式if …else语句</li>
+<li>表达式for 循环</li>
+<li>break and continue </li>
+<li>表达式while 循环</li>
+</ol>
+<h1 id="1-Python介绍"><a href="#1-Python介绍" class="headerlink" title="1.Python介绍"></a>1.Python介绍</h1><p>python的创始人为吉多·范罗苏姆（Guido van Rossum）。1989年的圣诞节期间，吉多·范罗苏姆为了在阿姆斯特丹打发时间，决心开发一个新的脚本解释程序，作为ABC语言的一种继承。  </p>
 <p>最新的TIOBE排行榜，Python赶超PHP占据第五， Python崇尚优美、清晰、简单，是一个优秀并广泛使用的语言。</p>
 <h2 id="编译和解释的区别是什么？"><a href="#编译和解释的区别是什么？" class="headerlink" title="编译和解释的区别是什么？"></a>编译和解释的区别是什么？</h2><p>编译器是把源程序的每一条语句都编译成机器语言,并保存成二进制文件,这样运行时计算机可以直接以机器语言来运行此程序,速度很快; </p>
 <p>而解释器则是只在执行程序时,才一条一条的解释成机器语言给计算机来执行,所以运行速度是不如编译后的程序运行的快的. </p>
@@ -183,7 +200,7 @@
 <li>Python 3.4 - March 16, 2014</li>
 <li>Python 3.5 - September 13, 2015</li>
 </ul>
-<h1 id="Python安装"><a href="#Python安装" class="headerlink" title="Python安装"></a>Python安装</h1><p><strong>windows:</strong></p>
+<h1 id="3-Python安装"><a href="#3-Python安装" class="headerlink" title="3.Python安装"></a>3.Python安装</h1><p><strong>windows:</strong></p>
 <ol>
 <li>下载安装包<br> <a href="https://www.python.org/downloads/" target="_blank" rel="external">https://www.python.org/downloads/</a></li>
 <li>安装<br> 默认安装路径：C:\Python36</li>
@@ -192,12 +209,12 @@
 <p><strong>linux、Mac:</strong></p>
 <p>无需安装，原装Python环境</p>
 <p>ps：如果自带2.6，请更新至2.7</p>
-<h1 id="第一个Python程序"><a href="#第一个Python程序" class="headerlink" title="第一个Python程序"></a>第一个Python程序</h1><p>IDE中执行：</p>
+<h1 id="4-第一个Python程序"><a href="#4-第一个Python程序" class="headerlink" title="4.第一个Python程序"></a>4.第一个Python程序</h1><p>IDE中执行：</p>
 <pre><code>print(&quot;Hello World!&quot;)
 </code></pre><p>或者创建hello.py文件：</p>
 <pre><code>#!/usr/bin/env python
 print(&quot;Hello World!&quot;)
-</code></pre><h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p><strong>声明变量</strong></p>
+</code></pre><h1 id="5-变量"><a href="#5-变量" class="headerlink" title="5.变量"></a>5.变量</h1><p><strong>声明变量</strong></p>
 <pre><code>name = &quot;Liyz&quot;
 </code></pre><p><strong>变量定义的规则：</strong></p>
 <ul>
@@ -212,7 +229,7 @@ name2 = name
 print(name,name2)
 name = &quot;Jack&quot;
 print(&quot;What is the value of name2 now?&quot;)
-</code></pre><h1 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h1><p>python解释器在加载 .py 文件中的代码时，会对内容进行编码（默认ascill）</p>
+</code></pre><h1 id="6-字符编码"><a href="#6-字符编码" class="headerlink" title="6.字符编码"></a>6.字符编码</h1><p>python解释器在加载 .py 文件中的代码时，会对内容进行编码（默认ascill）</p>
 <p>ASCII（American Standard Code for Information Interchange，美国标准信息交换代码）是基于拉丁字母的一套电脑编码系统，主要用于显示现代英语和其他西欧语言，其最多只能用 8 位来表示（一个字节），即：2**8 = 256-1，所以，ASCII码最多只能表示 255 个符号。</p>
 <p><strong>关于中文</strong></p>
 <p>为了处理汉字，程序员设计了用于简体中文的GB2312和用于繁体中文的big5。</p>
@@ -232,7 +249,7 @@ print &quot;你好，世界&quot;
 # -*- coding: utf-8 -*-
 
 print &quot;你好，世界&quot;
-</code></pre><h1 id="用户输入"><a href="#用户输入" class="headerlink" title="用户输入"></a>用户输入</h1><pre><code>#!/usr/bin/env python
+</code></pre><h1 id="7-用户输入"><a href="#7-用户输入" class="headerlink" title="7.用户输入"></a>7.用户输入</h1><pre><code>#!/usr/bin/env python
 #_*_coding:utf-8_*_
 
 #name = raw_input(&quot;What is your name?&quot;) #only on python 2.x
@@ -249,7 +266,7 @@ pwd = getpass.getpass(&quot;请输入密码：&quot;)
 
 # 打印输入的内容
 print(pwd)
-</code></pre><h1 id="模块初始"><a href="#模块初始" class="headerlink" title="模块初始"></a>模块初始</h1><p>Python的强大之处在于他有非常丰富和强大的标准库和第三方库，几乎你想实现的任何功能都有相应的Python库支持，以后的课程中会深入讲解常用到的各种库，现在，我们先来象征性的学2个简单的。</p>
+</code></pre><h1 id="8-模块初始"><a href="#8-模块初始" class="headerlink" title="8.模块初始"></a>8.模块初始</h1><p>Python的强大之处在于他有非常丰富和强大的标准库和第三方库，几乎你想实现的任何功能都有相应的Python库支持，以后的课程中会深入讲解常用到的各种库，现在，我们先来象征性的学2个简单的。</p>
 <p><strong>sys</strong></p>
 <pre><code>#!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -270,7 +287,7 @@ os.system(&quot;df -h&quot;) #调用系统命令
 </code></pre><p><strong>结合使用：</strong></p>
 <pre><code>import os,sys
 os.system(&apos;&apos;.join(sys.argv[1:])) #把用户的输入的参数当作一条命令交给os.system来执行
-</code></pre><h1 id="pyc介绍"><a href="#pyc介绍" class="headerlink" title=".pyc介绍"></a>.pyc介绍</h1><p><strong>1. Python是一门解释型语言？</strong></p>
+</code></pre><h1 id="9-pyc介绍"><a href="#9-pyc介绍" class="headerlink" title="9. .pyc介绍"></a>9. .pyc介绍</h1><p><strong>1. Python是一门解释型语言？</strong></p>
 <p>我初学Python时，听到的关于Python的第一句话就是，Python是一门解释性语言，我就这样一直相信下去，直到发现了<em>.pyc文件的存在。如果是解释型语言，那么生成的</em>.pyc文件是什么呢？c应该是compiled的缩写才对啊！</p>
 <p>为了防止其他学习Python的人也被这句话误解，那么我们就在文中来澄清下这个问题，并且把一些基础概念给理清。</p>
 <p><strong>2. 解释型语言和编译型语言</strong></p>
@@ -293,7 +310,7 @@ os.system(&apos;&apos;.join(sys.argv[1:])) #把用户的输入的参数当作一
 <p>当python程序运行时，编译的结果则是保存在位于内存中的PyCodeObject中，当Python程序运行结束时，Python解释器则将PyCodeObject写回到pyc文件中。</p>
 <p>当python程序第二次运行时，首先程序会在硬盘中寻找pyc文件，如果找到，则直接载入，否则就重复上面的过程。</p>
 <p>所以我们应该这样来定位PyCodeObject和pyc文件，我们说pyc文件其实是PyCodeObject的一种持久化保存方式。</p>
-<h1 id="数据类型初始"><a href="#数据类型初始" class="headerlink" title="数据类型初始"></a>数据类型初始</h1><h2 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h2><ul>
+<h1 id="10-数据类型初始"><a href="#10-数据类型初始" class="headerlink" title="10.数据类型初始"></a>10.数据类型初始</h1><h2 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h2><ul>
 <li>int（整型）</li>
 </ul>
 <p>　　在32位机器上，整数的位数为32位，取值范围为-2<strong>31～2</strong>31-1，即-2147483648～2147483647<br>　　在64位系统上，整数的位数为64位，取值范围为-2<strong>63～2</strong>63-1，即-9223372036854775808～9223372036854775807</p>
@@ -353,33 +370,132 @@ print &quot;i am %s &quot; % name
 <li><strong>循环</strong></li>
 <li><strong>长度</strong></li>
 </ul>
-<h1 id="数据运算"><a href="#数据运算" class="headerlink" title="数据运算"></a>数据运算</h1><h2 id="算术运算"><a href="#算术运算" class="headerlink" title="算术运算"></a>算术运算</h2><table>
-<thead>
-<tr>
-<th>dog</th>
-<th>bird</th>
-<th>cat</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>foo</td>
-<td>foo</td>
-<td>foo</td>
-</tr>
-<tr>
-<td>bar</td>
-<td>bar</td>
-<td>bar</td>
-</tr>
-<tr>
-<td>baz</td>
-<td>baz</td>
-<td>baz</td>
-</tr>
-</tbody>
-</table>
-<h1 id="表达式if-else语句"><a href="#表达式if-else语句" class="headerlink" title="表达式if..else语句"></a>表达式if..else语句</h1><h1 id="表达式for循环"><a href="#表达式for循环" class="headerlink" title="表达式for循环"></a>表达式for循环</h1><h1 id="break-and-continue"><a href="#break-and-continue" class="headerlink" title="break and continue"></a>break and continue</h1><h1 id="表达式whilex循环"><a href="#表达式whilex循环" class="headerlink" title="表达式whilex循环"></a>表达式whilex循环</h1>
+<h1 id="11-数据运算"><a href="#11-数据运算" class="headerlink" title="11.数据运算"></a>11.数据运算</h1><h2 id="算术运算"><a href="#算术运算" class="headerlink" title="算术运算"></a>算术运算</h2><ul>
+<li><ul>
+<li>两个对象相加 </li>
+</ul>
+</li>
+<li><ul>
+<li>两个数字相减</li>
+</ul>
+</li>
+<li><ul>
+<li>数字相乘，或字符串相乘返回重复的字符串</li>
+</ul>
+</li>
+<li>/  除法运算，3.x中可做浮点型运算，2.x中为整除</li>
+<li>%  取模，5%2 结果为1</li>
+<li>** 幂运算</li>
+<li>// 整除运算 9/4 结果为2</li>
+</ul>
+<h2 id="比较运算"><a href="#比较运算" class="headerlink" title="比较运算"></a>比较运算</h2><ul>
+<li>==  等于</li>
+<li>!=  不等于</li>
+<li>&lt;&gt;  不等于</li>
+<li><blockquote>
+<p>  大于</p>
+</blockquote>
+</li>
+<li>&lt;   小于</li>
+<li><blockquote>
+<p>=  大于等于</p>
+</blockquote>
+</li>
+<li>&lt;=  小于等于</li>
+</ul>
+<h2 id="赋值运算"><a href="#赋值运算" class="headerlink" title="赋值运算"></a>赋值运算</h2><ul>
+<li>=</li>
+<li>+=</li>
+<li>-=</li>
+<li>*=</li>
+<li>/=</li>
+<li>%=</li>
+<li>**=</li>
+<li>//=</li>
+</ul>
+<h2 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h2><ul>
+<li>and  两个条件都符合，返回true</li>
+<li>or   两个条件符合一个，返回true</li>
+<li>not  如何为false，则返回true</li>
+</ul>
+<h2 id="成员运算"><a href="#成员运算" class="headerlink" title="成员运算"></a>成员运算</h2><ul>
+<li>in  x in y， x在y序列中返回true</li>
+<li>not in  x in y， x不在y序列中返回true</li>
+</ul>
+<h2 id="身份运算"><a href="#身份运算" class="headerlink" title="身份运算"></a>身份运算</h2><ul>
+<li>is</li>
+<li>is not</li>
+</ul>
+<h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><ul>
+<li>&amp;</li>
+<li>|</li>
+<li>^</li>
+<li>~</li>
+<li>&lt;&lt;</li>
+<li><blockquote>
+<p>&gt;</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h2><ul>
+<li>**    指数 (最高优先级)</li>
+<li>~ + -    按位翻转, 一元加号和减号 (最后两个的方法名为 +@ 和 -@)</li>
+<li><ul>
+<li>/ % //    乘，除，取模和取整除</li>
+</ul>
+</li>
+<li><ul>
+<li><ul>
+<li>加法减法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><blockquote>
+<blockquote>
+<p>&lt;&lt;    右移，左移运算符</p>
+</blockquote>
+</blockquote>
+</li>
+<li>&amp;    位 ‘AND’</li>
+<li>^ |    位运算符</li>
+<li>&lt;= &lt; &gt; &gt;=    比较运算符</li>
+<li>&lt;&gt; == !=    等于运算符</li>
+<li>= %= /= //= -= += <em>= *</em>=    赋值运算符</li>
+<li>is is not    身份运算符</li>
+<li>in not in    成员运算符</li>
+<li>not or and    逻辑运算符</li>
+<li><h1 id="12-表达式if-else语句"><a href="#12-表达式if-else语句" class="headerlink" title="12.表达式if..else语句"></a>12.表达式if..else语句</h1><p>  age = int(input(‘Please enter your age:’))<br>  if age &lt;= 20:</p>
+<pre><code>print(&apos;小于等于20&apos;)
+</code></pre><p>  elif age &lt;=  40:</p>
+<pre><code>print(&apos;小于等于40&apos;)
+</code></pre><p>  else:</p>
+<pre><code>print(&apos;大于40&apos;)
+</code></pre></li>
+</ul>
+<h1 id="13-表达式for循环"><a href="#13-表达式for循环" class="headerlink" title="13.表达式for循环"></a>13.表达式for循环</h1><pre><code>for i in range(10):
+    print(&quot;loop: &quot;,i)
+</code></pre><h1 id="14-break-and-continue"><a href="#14-break-and-continue" class="headerlink" title="14.break and continue"></a>14.break and continue</h1><pre><code>count = 1
+while count:
+    print(&quot;loop: &quot;,count)
+    count += 1
+    if count == 10:    break
+# 当count等于10时，跳出循环，结束程序
+</code></pre><hr>
+<pre><code>count = 1
+while count:
+    print(&quot;loop: &quot;,count)
+    count += 1
+    if count == 10:
+        count = 1
+        continue
+# 当count等于10时，跳出本次循环，进行下一次循环
+</code></pre><h1 id="15-表达式while循环"><a href="#15-表达式while循环" class="headerlink" title="15.表达式while循环"></a>15.表达式while循环</h1><pre><code>count = 1
+while count:
+       print(&quot;loop: &quot;,count)
+       count += 1
+# 无线循环
+</code></pre>
         </div>
       </article>
     </div>
