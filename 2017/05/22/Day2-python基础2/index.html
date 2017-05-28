@@ -141,353 +141,440 @@
         <div class="entry-content">
           <p><a href="http://www.cnblogs.com/alex3714/articles/5717620.html" target="_blank" rel="external">http://www.cnblogs.com/alex3714/articles/5717620.html</a></p>
 <h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><ol>
-<li>Python介绍</li>
-<li>发展史</li>
-<li>Python安装</li>
-<li>第一个Python程序</li>
-<li>变量</li>
-<li>字符编码</li>
-<li>用户输入</li>
-<li>模块初识</li>
-<li>.pyc认识</li>
-<li>数据类型初识</li>
-<li>数据运算</li>
-<li>表达式if …else语句</li>
-<li>表达式for 循环</li>
-<li>break and continue </li>
-<li>表达式while 循环</li>
+<li>列表、元组操作</li>
+<li>字符串操作</li>
+<li>字典操作</li>
+<li>集合操作</li>
+<li>文件操作</li>
+<li>字符编码与转码 </li>
 </ol>
-<h1 id="1-Python介绍"><a href="#1-Python介绍" class="headerlink" title="1.Python介绍"></a>1.Python介绍</h1><p>python的创始人为吉多·范罗苏姆（Guido van Rossum）。1989年的圣诞节期间，吉多·范罗苏姆为了在阿姆斯特丹打发时间，决心开发一个新的脚本解释程序，作为ABC语言的一种继承。  </p>
-<p>最新的TIOBE排行榜，Python赶超PHP占据第五， Python崇尚优美、清晰、简单，是一个优秀并广泛使用的语言。</p>
-<h2 id="编译和解释的区别是什么？"><a href="#编译和解释的区别是什么？" class="headerlink" title="编译和解释的区别是什么？"></a>编译和解释的区别是什么？</h2><p>编译器是把源程序的每一条语句都编译成机器语言,并保存成二进制文件,这样运行时计算机可以直接以机器语言来运行此程序,速度很快; </p>
-<p>而解释器则是只在执行程序时,才一条一条的解释成机器语言给计算机来执行,所以运行速度是不如编译后的程序运行的快的. </p>
-<p>这是因为计算机不能直接认识并执行我们写的语句,它只能认识机器语言(是二进制的形式)</p>
-<p>编译型vs解释型</p>
-<p>编译型<br>优点：编译器一般会有预编译的过程对代码进行优化。因为编译只做一次，运行时不需要编译，所以编译型语言的程序执行效率高。可以脱离语言环境独立运行。<br>缺点：编译之后如果需要修改就需要整个模块重新编译。编译的时候根据对应的运行环境生成机器码，不同的操作系统之间移植就会有问题，需要根据运行的操作系统环境编译不同的可执行文件。</p>
-<p>解释型<br>优点：有良好的平台兼容性，在任何环境中都可以运行，前提是安装了解释器（虚拟机）。灵活，修改代码的时候直接修改就可以，可以快速部署，不用停机维护。</p>
-<p>缺点：每次运行的时候都要解释一遍，性能上不如编译型语言。</p>
-<h2 id="Python解释器"><a href="#Python解释器" class="headerlink" title="Python解释器"></a>Python解释器</h2><p>当我们编写Python代码时，我们得到的是一个包含Python代码的以.py为扩展名的文本文件。要运行代码，就需要Python解释器去执行.py文件。</p>
-<p>由于整个Python语言从规范到解释器都是开源的，所以理论上，只要水平够高，任何人都可以编写Python解释器来执行Python代码（当然难度很大）。事实上，确实存在多种Python解释器。</p>
-<p><strong>CPython</strong></p>
-<p>当我们从Python官方网站下载并安装好Python 2.7后，我们就直接获得了一个官方版本的解释器：CPython。这个解释器是用C语言开发的，所以叫CPython。在命令行下运行python就是启动CPython解释器。</p>
-<p>CPython是使用最广的Python解释器。教程的所有代码也都在CPython下执行。</p>
-<p><strong>IPython</strong></p>
-<p>IPython是基于CPython之上的一个交互式解释器，也就是说，IPython只是在交互方式上有所增强，但是执行Python代码的功能和CPython是完全一样的。好比很多国产浏览器虽然外观不同，但内核其实都是调用了IE。</p>
-<p>CPython用&gt;&gt;&gt;作为提示符，而IPython用In [序号]:作为提示符。</p>
-<p><strong>PyPy</strong></p>
-<p>PyPy是另一个Python解释器，它的目标是执行速度。PyPy采用JIT技术，对Python代码进行动态编译（注意不是解释），所以可以显著提高Python代码的执行速度。</p>
-<p>绝大部分Python代码都可以在PyPy下运行，但是PyPy和CPython有一些是不同的，这就导致相同的Python代码在两种解释器下执行可能会有不同的结果。如果你的代码要放到PyPy下执行，就需要了解PyPy和CPython的不同点。</p>
-<p><strong>Jython</strong></p>
-<p>Jython是运行在Java平台上的Python解释器，可以直接把Python代码编译成Java字节码执行。</p>
-<p><strong>IronPython</strong></p>
-<p>IronPython和Jython类似，只不过IronPython是运行在微软.Net平台上的Python解释器，可以直接把Python代码编译成.Net的字节码。</p>
-<p><strong>小结</strong></p>
-<p>Python的解释器很多，但使用最广泛的还是CPython。如果要和Java或.Net平台交互，最好的办法不是用Jython或IronPython，而是通过网络调用来交互，确保各程序之间的独立性。</p>
-<h1 id="2-Python发展史"><a href="#2-Python发展史" class="headerlink" title="2.Python发展史"></a>2.Python发展史</h1><ul>
-<li>1989年，为了打发圣诞节假期，Guido开始写Python语言的编译器。Python这个名字，来自Guido所挚爱的电视剧Monty Python’s Flying Circus。他希望这个新的叫做Python的语言，能符合他的理想：创造一种C和shell之间，功能全面，易学易用，可拓展的语言。</li>
-<li>1991年，第一个Python编译器诞生。它是用C语言实现的，并能够调用C语言的库文件。从一出生，Python已经具有了：类，函数，异常处理，包含表和词典在内的核心数据类型，以及模块为基础的拓展系统。</li>
-<li>Granddaddy of Python web frameworks, Zope 1 was released in 1999</li>
-<li>Python 1.0 - January 1994 增加了 lambda, map, filter and reduce.</li>
-<li>Python 2.0 - October 16, 2000，加入了内存回收机制，构成了现在Python语言框架的基础</li>
-<li>Python 2.4 - November 30, 2004, 同年目前最流行的WEB框架Django 诞生</li>
-<li>Python 2.5 - September 19, 2006</li>
-<li>Python 2.6 - October 1, 2008</li>
-<li>Python 2.7 - July 3, 2010</li>
-<li>In November 2014, it was announced that Python 2.7 would be supported until - 2020, and reaffirmed that there would be no 2.8 release as users were expected to move to Python 3.4+ as soon as possible</li>
-<li>Python 3.0 - December 3, 2008</li>
-<li>Python 3.1 - June 27, 2009</li>
-<li>Python 3.2 - February 20, 2011</li>
-<li>Python 3.3 - September 29, 2012</li>
-<li>Python 3.4 - March 16, 2014</li>
-<li>Python 3.5 - September 13, 2015</li>
+<h1 id="1-列表、元组操作"><a href="#1-列表、元组操作" class="headerlink" title="1.列表、元组操作"></a>1.列表、元组操作</h1><p>列表是我们最以后最常用的数据类型之一，通过列表可以对数据实现最方便的存储、修改等操作</p>
+<p><strong>定义列表</strong></p>
+<pre><code>names = [&apos;Alex&apos;,&quot;Tenglan&quot;,&apos;Eric&apos;]
+</code></pre><p>通过下标访问列表中的元素，下标从0开始计数</p>
+<pre><code>&gt;&gt;&gt; names[0]
+&apos;Alex&apos;
+&gt;&gt;&gt; names[2]
+&apos;Eric&apos;
+&gt;&gt;&gt; names[-1]
+&apos;Eric&apos;
+&gt;&gt;&gt; names[-2] #还可以倒着取
+&apos;Tenglan&apos;
+</code></pre><p><strong>切片:取多个元素</strong></p>
+<pre><code>&gt;&gt;&gt; names = [&quot;Alex&quot;,&quot;Tenglan&quot;,&quot;Eric&quot;,&quot;Rain&quot;,&quot;Tom&quot;,&quot;Amy&quot;]
+&gt;&gt;&gt; names[1:4]  #取下标1至下标4之间的数字，包括1，不包括4
+[&apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;]
+&gt;&gt;&gt; names[1:-1] #取下标1至-1的值，不包括-1
+[&apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;Tom&apos;]
+&gt;&gt;&gt; names[0:3] 
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;]
+&gt;&gt;&gt; names[:3] #如果是从头开始取，0可以忽略，跟上句效果一样
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;]
+&gt;&gt;&gt; names[3:] #如果想取最后一个，必须不能写-1，只能这么写
+[&apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;] 
+&gt;&gt;&gt; names[3:-1] #这样-1就不会被包含了
+[&apos;Rain&apos;, &apos;Tom&apos;]
+&gt;&gt;&gt; names[0::2] #后面的2是代表，每隔一个元素，就取一个
+[&apos;Alex&apos;, &apos;Eric&apos;, &apos;Tom&apos;] 
+&gt;&gt;&gt; names[::2] #和上句效果一样
+[&apos;Alex&apos;, &apos;Eric&apos;, &apos;Tom&apos;]
+</code></pre><p><strong>追加</strong></p>
+<pre><code>&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;]
+&gt;&gt;&gt; names.append(&quot;我是新来的&quot;)
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+</code></pre><p><strong>插入</strong></p>
+<pre><code>&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+&gt;&gt;&gt; names.insert(2,&quot;从Eric前面插入&quot;)
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;从Eric前面插入&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+
+&gt;&gt;&gt; names.insert(5,&quot;从Rain后面插入&quot;)
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;强行从Eric前面插入&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;从Rain后面插入&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+</code></pre><p><strong>修改</strong></p>
+<pre><code>&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;从Eric前面插入&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;从Rain后面插入&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+&gt;&gt;&gt; names[2] = &quot;修改&quot;
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;修改&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;从eric后面插入&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+</code></pre><p><strong>删除</strong></p>
+<pre><code>&gt;&gt;&gt; del names[2] 
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;从eric后面插入&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+&gt;&gt;&gt; del names[4]
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Eric&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+
+&gt;&gt;&gt; names.remove(&quot;Eric&quot;) #删除指定元素
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, &apos;我是新来的&apos;]
+
+&gt;&gt;&gt; names.pop() #删除列表最后一个值 
+&apos;我是新来的&apos;
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;]
+</code></pre><p><strong>扩展</strong></p>
+<pre><code>&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;]
+&gt;&gt;&gt; b = [1,2,3]
+&gt;&gt;&gt; names.extend(b)
+&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, 1, 2, 3]
+</code></pre><p><strong>拷贝</strong></p>
+<pre><code>&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, 1, 2, 3]
+
+&gt;&gt;&gt; name_copy = names.copy()
+&gt;&gt;&gt; name_copy
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, 1, 2, 3]
+
+# 浅复制的列表，新列表修改后，原始列表会随之改变，只拷贝第一层
+names = [&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, [1, 2, 3]]
+name_copy = names.copy()
+
+name_copy[-1][0] = &apos;修改副本&apos;
+
+print(names)
+print(name_copy)
+
+# 使用深拷贝，修改新列表后，原始列表不发生改变。
+import copy
+
+names = [&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Rain&apos;, &apos;Tom&apos;, &apos;Amy&apos;, [1, 2, 3]]
+name_copy = copy.deepcopy(names)
+
+name_copy[-1][0] = &apos;修改副本&apos;
+
+print(names)
+print(name_copy)
+</code></pre><p><strong>统计</strong></p>
+<pre><code>&gt;&gt;&gt; names
+[&apos;Alex&apos;, &apos;Tenglan&apos;, &apos;Amy&apos;, &apos;Tom&apos;, &apos;Amy&apos;, 1, 2, 3]
+&gt;&gt;&gt; names.count(&quot;Amy&quot;)
+2
+</code></pre><p><strong>排序&amp;翻转</strong></p>
+<pre><code>names = [&apos;Alex&apos;, &apos;Amy&apos;,&apos;amy&apos;,&apos;&apos;, &apos;Amy&apos;, &apos;Tenglan&apos;, &apos;Tom&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;]
+
+names.sort()
+print(names)
+[&apos;&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;Alex&apos;, &apos;Amy&apos;, &apos;Amy&apos;, &apos;Tenglan&apos;, &apos;Tom&apos;, &apos;amy&apos;]
+# 空格最前面，其次数字、大写字母、小写字母排序
+
+names.reverse()
+print(names)
+[&apos;amy&apos;, &apos;Tom&apos;, &apos;Tenglan&apos;, &apos;Amy&apos;, &apos;Amy&apos;, &apos;Alex&apos;, &apos;3&apos;, &apos;2&apos;, &apos;1&apos;, &apos;&apos;]
+</code></pre><p><strong>获取下标</strong></p>
+<pre><code>names = [&apos;Alex&apos;, &apos;Amy&apos;,&apos;amy&apos;,&apos;&apos;, &apos;Amy&apos;, &apos;Tenglan&apos;, &apos;Tom&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;]
+print(names.index(&apos;Amy&apos;))
+1
+#只返回第一个值得下标
+</code></pre><p><strong>元组</strong></p>
+<p>元祖是只读列表，不可对其值进行修改。    它只有2个方法，一个是count,一个是index。</p>
+<pre><code>names = (&quot;alex&quot;,&quot;jack&quot;,&quot;eric&quot;)
+</code></pre><h1 id="2-字符串修改"><a href="#2-字符串修改" class="headerlink" title="2.字符串修改"></a>2.字符串修改</h1><pre><code>name = &apos;li yinzhu&apos;
+name.capitalize()  #首字母大写
+
+name = &apos;Li Yinzhu&apos;
+print(name.swapcase())    #所有字母 大写变小写 小写变大写
+
+name = &apos;Li Yinzhu&apos;
+print(name.center(50,&apos;#&apos;))  #总共50个字符，不够的#补全
+####################Li Yinzhu#####################
+
+print(name.count(&apos;L&apos;)) #统计L出现的次数
+
+name = &apos;Li Yinzhu&apos;
+name.encode()  #将字符串编码成bytes格式
+
+print(name.endswith(&apos;zhu&apos;))  #判断是否以zhu结尾，返回True或Fasle
+</code></pre><p>format :</p>
+<pre><code>msg = &apos;my name is {}, and age is {}&apos;
+print(msg.format(&apos;liyz&apos;,22))
+my name is liyz, and age is 22
+
+msg = &apos;my name is {name}, and age is {age}&apos;
+print(msg.format(name=&apos;liyz&apos;,age=22))
+my name is liyz, and age is 22
+</code></pre><p>format_map：</p>
+<pre><code>msg = &apos;my name is {name}, and age is {age}&apos;
+print(msg.format_map({&apos;name&apos;:&apos;liyz&apos;,&apos;age&apos;:22}))
+
+my name is liyz, and age is 22
+
+msg.index(&apos;a&apos;)  返回a所在字符串的索引
+</code></pre><p>判断类型：</p>
+<pre><code>&apos;9aA&apos;.isalnum()  #判断是否为字母或数字
+
+&apos;9&apos;.isdigit()     #判断是否为整数
+&apos;123444&apos;.isnumeric()    #判断只有数字，与isdigit作用一样
+&apos;aadd6,%^&amp;&apos;.isprintable()    #判断是否为可打印字符
+
+&apos;      &apos;.isspace()    #判断是否为空格或tab组成
+
+name.istitle()    #判断是否为title
+
+name.isupper()    #判断是否为大写
+name.islower()    #判断是否为小写
+</code></pre><p>join：</p>
+<pre><code>names = [&apos;Alex&apos;, &apos;Amy&apos;,&apos;amy&apos;,&apos;&apos;, &apos;Amy&apos;, &apos;Tenglan&apos;, &apos;Tom&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;]
+print(&apos;|&apos;.join(names))
+
+Alex|Amy|amy||Amy|Tenglan|Tom|1|2|3
+</code></pre><p>maketrans:</p>
+<pre><code>intab = &quot;aeiou&quot;  # This is the string having actual characters.
+outtab = &quot;12345&quot;  # This is the string having corresponding mapping character
+trantab = str.maketrans(intab, outtab)
+
+str = &quot;this is string example....wow!!!&quot;
+print(str.translate(trantab))
+
+th3s 3s str3ng 2x1mpl2....w4w!!!
+# 将指定字符替换
+
+msg.partition(&apos;is&apos;)  
+# 分割， 输出 (&apos;my name &apos;, &apos;is&apos;, &apos; {name}, and age is {age}&apos;) 
+
+
+&quot;alex li, chinese name is lijie&quot;.replace(&quot;li&quot;,&quot;LI&quot;,1)
+ &apos;alex LI, chinese name is lijie&apos;
+# 替换
+
+msg.swapcase 大小写互换
+
+
+msg.zfill(40)
+&apos;00000my name is {name}, and age is {age}&apos;
+# 返回指定长度右对齐，前面以0补全
+
+print(msg.rjust(40,&apos;-&apos;))
+-----my name is {name}, and age is {age}
+
+print(msg.ljust(40,&apos;-&apos;))
+my name is {name}, and age is {age}-----
+
+
+
+b=&quot;ddefdsdff_哈哈&quot; 
+b.isidentifier() #检测一段字符串可否被当作标志符，即是否符合变量命名规则
+True
+</code></pre><h1 id="3-字典操作"><a href="#3-字典操作" class="headerlink" title="3.字典操作"></a>3.字典操作</h1><p>字典一种key - value 的数据类型，使用就像我们上学用的字典，通过笔划、字母来查对应页的详细内容。<br>用法：</p>
+<pre><code>info = {
+    &apos;addr&apos;:&quot;xi&apos;an&quot;,
+    &apos;phone&apos;:&apos;13333333333&apos;,
+    &apos;name&apos;:&apos;liyz&apos;
+}
+</code></pre><p>字典的特性：</p>
+<ul>
+<li>dict是无序的</li>
+<li>key必须是唯一的,so 天生去重</li>
 </ul>
-<h1 id="3-Python安装"><a href="#3-Python安装" class="headerlink" title="3.Python安装"></a>3.Python安装</h1><p><strong>windows:</strong></p>
+<p>修改：<br>    info[‘phone’] = ‘18888888888’<br>    print(info)<br>    {‘addr’: “xi’an”, ‘phone’: ‘18888888888’, ‘name’: ‘liyz’}</p>
+<p>删除：</p>
+<pre><code>del info[&apos;name&apos;]    #删除方法1
+info.pop(&apos;addr&apos;)    #删除方法2
+info.popitem()        #随机删除
+</code></pre><p>查找：</p>
+<pre><code>&apos;addr&apos; in info
+#返回True
+info.get(&apos;addr&apos;)
+#返回xi&apos;an
+info.get(&apos;addrrr&apos;,&apos;N/A&apos;)
+#返回N/A, 如不指定第二个参数，返回None
+info[&apos;name&apos;]
+#返回liyz，如不存在 报错
+</code></pre><p>字典嵌套及操作：</p>
+<pre><code>info = {
+    &apos;leo&apos;:
+        {
+            &apos;addr&apos;:&quot;xi&apos;an&quot;,
+            &apos;job&apos;:&apos;IT&apos;,
+            &apos;phone&apos;:18888888888
+        },
+    &apos;tom&apos;:
+        {
+            &apos;addr&apos;:&quot;Beijing&quot;,
+            &apos;job&apos;:&apos;finance&apos;,
+            &apos;phone&apos;:18888888888
+        }
+
+}
+print(info[&apos;tom&apos;][&apos;addr&apos;])
+Beijing
+</code></pre><p>其他：</p>
+<pre><code># values
+print(info.values())
+dict_values([{&apos;addr&apos;: &quot;xi&apos;an&quot;, &apos;job&apos;: &apos;IT&apos;, &apos;phone&apos;: 18888888888}, {&apos;addr&apos;: &apos;Beijing&apos;, &apos;job&apos;: &apos;finance&apos;, &apos;phone&apos;: 18888888888}])
+
+# keys
+print(info.keys())
+dict_keys([&apos;leo&apos;, &apos;tom&apos;])
+
+print(info.setdefault(&apos;tomm&apos;,&apos;----&apos;))
+----
+# 当key不存在时，返回指定值
+
+# update
+b = {&apos;tom&apos;:{}}
+info.update(b)
+print(info)
+{&apos;leo&apos;: {&apos;addr&apos;: &quot;xi&apos;an&quot;, &apos;job&apos;: &apos;IT&apos;, &apos;phone&apos;: 18888888888}, &apos;tom&apos;: {}}
+
+# items
+# 每个key返回一个元组
+print(info.items())
+dict_items([(&apos;leo&apos;, {&apos;addr&apos;: &quot;xi&apos;an&quot;, &apos;job&apos;: &apos;IT&apos;, &apos;phone&apos;: 18888888888}), (&apos;tom&apos;, {&apos;addr&apos;: &apos;Beijing&apos;, &apos;job&apos;: &apos;finance&apos;, &apos;phone&apos;: 18888888888})])
+
+# fromkeys
+a = dict.fromkeys([1,2,3],&apos;test&apos;)
+print(a)
+{1: &apos;test&apos;, 2: &apos;test&apos;, 3: &apos;test&apos;}
+
+l = []
+a = dict.fromkeys([1,2,3],l)
+print(a)
+{1: [], 2: [], 3: []}
+
+a[1].append(&apos;ttt&apos;)
+print(a)
+{1: [&apos;ttt&apos;], 2: [&apos;ttt&apos;], 3: [&apos;ttt&apos;]}
+# 每个值都添加了，因为引用的是同一个列表
+</code></pre><p>循环dict:</p>
+<pre><code>#方法1
+for key in info:
+    print(key,info[key])
+
+#方法2
+for k,v in info.items(): #会先把dict转成list,数据里大时莫用
+    print(k,v)
+</code></pre><h1 id="4-集合操作"><a href="#4-集合操作" class="headerlink" title="4.集合操作"></a>4.集合操作</h1><p>集合是一个无序的，不重复的数据组合，它的主要作用如下：</p>
+<ul>
+<li>去重，把一个列表变成集合，就自动去重了</li>
+<li>关系测试，测试两组数据之前的交集、差集、并集等关系</li>
+</ul>
+<hr>
+<pre><code>s = set([1,2,3,43,3,4,54,44,4,4,4,4])
+print(s)
+{1, 2, 3, 4, 43, 44, 54}
+#创建一个集合，去重
+
+t = set(&quot;Hello&quot;)         #创建一个唯一字符的集合      
+
+a = t | s          # t 和 s的并集  
+b = t &amp; s          # t 和 s的交集  
+c = t – s          # 求差集（项在t中，但不在s中）  
+d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二者中）  
+
+基本操作：  
+
+t.add(&apos;x&apos;)            # 添加一项  
+s.update([10,37,42])  # 在s中添加多项  
+
+使用remove()可以删除一项：    
+t.remove(&apos;H&apos;)  
+
+len(s)  
+set 的长度  
+
+x in s  
+测试 x 是否是 s 的成员  
+
+x not in s  
+测试 x 是否不是 s 的成员  
+
+s.issubset(t)  
+s &lt;= t  
+测试是否 s 中的每一个元素都在 t 中  
+
+s.issuperset(t)  
+s &gt;= t  
+测试是否 t 中的每一个元素都在 s 中  
+
+s.union(t)  
+s | t  
+返回一个新的 set 包含 s 和 t 中的每一个元素  
+
+s.intersection(t)  
+s &amp; t  
+返回一个新的 set 包含 s 和 t 中的公共元素  
+
+s.difference(t)  
+s - t  
+返回一个新的 set 包含 s 中有但是 t 中没有的元素  
+
+s.symmetric_difference(t)  
+s ^ t  
+返回一个新的 set 包含 s 和 t 中不重复的元素  
+
+s.copy()  
+返回 set “s”的一个浅复制  
+</code></pre><h1 id="5-文件操作"><a href="#5-文件操作" class="headerlink" title="5.文件操作"></a>5.文件操作</h1><p>对文件操作流程:</p>
 <ol>
-<li>下载安装包<br> <a href="https://www.python.org/downloads/" target="_blank" rel="external">https://www.python.org/downloads/</a></li>
-<li>安装<br> 默认安装路径：C:\Python36</li>
-<li>配置环境变量<br> 【右键计算机】–》【属性】–》【高级系统设置】–》【高级】–》【环境变量】–》【在第二个内容框中找到 变量名为Path 的一行，双击】 –&gt; 【Python安装目录追加到变值值中，用 ； 分割】<br> 备注：安装过程中，也可选择自动添加环境变量。</li>
+<li>打开文件，得到文件句柄并赋值给一个变量</li>
+<li>通过句柄对文件进行操作</li>
+<li>关闭文件 </li>
 </ol>
-<p><strong>linux、Mac:</strong></p>
-<p>无需安装，原装Python环境</p>
-<p>ps：如果自带2.6，请更新至2.7</p>
-<h1 id="4-第一个Python程序"><a href="#4-第一个Python程序" class="headerlink" title="4.第一个Python程序"></a>4.第一个Python程序</h1><p>IDE中执行：</p>
-<pre><code>print(&quot;Hello World!&quot;)
-</code></pre><p>或者创建hello.py文件：</p>
-<pre><code>#!/usr/bin/env python
-print(&quot;Hello World!&quot;)
-</code></pre><h1 id="5-变量"><a href="#5-变量" class="headerlink" title="5.变量"></a>5.变量</h1><p><strong>声明变量</strong></p>
-<pre><code>name = &quot;Liyz&quot;
-</code></pre><p><strong>变量定义的规则：</strong></p>
+<p>基本操作　　</p>
+<pre><code>f = open(&apos;lyrics&apos;) #打开文件
+first_line = f.readline()
+print(&apos;first line:&apos;,first_line) #读一行
+print(&apos;我是分隔线&apos;.center(50,&apos;-&apos;))
+data = f.read()# 读取剩下的所有内容,文件大时不要用
+print(data) #打印文件
+
+f.close() #关闭文件
+</code></pre><p>打开文件的模式有：</p>
 <ul>
-<li>变量名只能是 字母、数字或下划线的任意组合</li>
-<li>变量名的第一个字符不能是数字</li>
-<li>以下关键字不能声明为变量名</li>
+<li>r，只读模式（默认）。</li>
+<li>w，只写模式。【不可读；不存在则创建；存在则删除内容；】</li>
+<li>a，追加模式。【可读；   不存在则创建；存在则只追加内容；】</li>
+<li>“+” 表示可以同时读写某个文件</li>
+<li>r+，可读写文件。【可读；可写；可追加】</li>
+<li>w+，写读</li>
+<li>a+，同a</li>
 </ul>
-<p>[‘and’, ‘as’, ‘assert’, ‘break’, ‘class’, ‘continue’, ‘def’, ‘del’, ‘elif’, ‘else’, ‘except’, ‘exec’, ‘finally’, ‘for’, ‘from’, ‘global’, ‘if’, ‘import’, ‘in’, ‘is’, ‘lambda’, ‘not’, ‘or’, ‘pass’, ‘print’, ‘raise’, ‘return’, ‘try’, ‘while’, ‘with’, ‘yield’]</p>
-<p><strong>变量的赋值</strong></p>
-<pre><code>name = &quot;Liyz&quot;
-name2 = name
-print(name,name2)
-name = &quot;Jack&quot;
-print(&quot;What is the value of name2 now?&quot;)
-</code></pre><h1 id="6-字符编码"><a href="#6-字符编码" class="headerlink" title="6.字符编码"></a>6.字符编码</h1><p>python解释器在加载 .py 文件中的代码时，会对内容进行编码（默认ascill）</p>
-<p>ASCII（American Standard Code for Information Interchange，美国标准信息交换代码）是基于拉丁字母的一套电脑编码系统，主要用于显示现代英语和其他西欧语言，其最多只能用 8 位来表示（一个字节），即：2**8 = 256-1，所以，ASCII码最多只能表示 255 个符号。</p>
-<p><strong>关于中文</strong></p>
-<p>为了处理汉字，程序员设计了用于简体中文的GB2312和用于繁体中文的big5。</p>
-<p>GB2312(1980年)一共收录了7445个字符，包括6763个汉字和682个其它符号。汉字区的内码范围高字节从B0-F7，低字节从A1-FE，占用的码位是72*94=6768。其中有5个空位是D7FA-D7FE。</p>
-<p>GB2312 支持的汉字太少。1995年的汉字扩展规范GBK1.0收录了21886个符号，它分为汉字区和图形符号区。汉字区包括21003个字符。2000年的 GB18030是取代GBK1.0的正式国家标准。该标准收录了27484个汉字，同时还收录了藏文、蒙文、维吾尔文等主要的少数民族文字。现在的PC平台必须支持GB18030，对嵌入式产品暂不作要求。所以手机、MP3一般只支持GB2312。</p>
-<p>从ASCII、GB2312、GBK 到GB18030，这些编码方法是向下兼容的，即同一个字符在这些方案中总是有相同的编码，后面的标准支持更多的字符。在这些编码中，英文和中文可以统一地处理。区分中文编码的方法是高字节的最高位不为0。按照程序员的称呼，GB2312、GBK到GB18030都属于双字节字符集 (DBCS)。</p>
-<p>有的中文Windows的缺省内码还是GBK，可以通过GB18030升级包升级到GB18030。不过GB18030相对GBK增加的字符，普通人是很难用到的，通常我们还是用GBK指代中文Windows内码。</p>
-<p><strong>显然ASCII码无法将世界上的各种文字和符号全部表示，所以，就需要新出一种可以代表所有字符和符号的编码，即：Unicode</strong></p>
-<p><strong>Unicode:</strong><br>（统一码、万国码、单一码）是一种在计算机上使用的字符编码。Unicode 是为了解决传统的字符编码方案的局限而产生的，它为每种语言中的每个字符设定了统一并且唯一的二进制编码，规定虽有的字符和符号最少由 16 位来表示（2个字节），即：2 **16 = 65536，<br>注：此处说的的是最少2个字节，可能更多</p>
-<p><strong>UTF-8:</strong><br>是对Unicode编码的压缩和优化，他不再使用最少使用2个字节，而是将所有的字符和符号进行分类：ascii码中的内容用1个字节保存、欧洲的字符用2个字节保存，东亚的字符用3个字节保存…</p>
-<p>所以，python解释器在加载 .py 文件中的代码时，会对内容进行编码（默认ascill），如果是如下代码的话：</p>
-<p>报错：ascii码无法表示中文</p>
-<pre><code>#!/usr/bin/env python
-print &quot;你好，世界&quot;
-</code></pre><p>改正：应该显示的告诉python解释器，用什么编码来执行源代码，即：</p>
-<pre><code>#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-print &quot;你好，世界&quot;
-</code></pre><h1 id="7-用户输入"><a href="#7-用户输入" class="headerlink" title="7.用户输入"></a>7.用户输入</h1><pre><code>#!/usr/bin/env python
-#_*_coding:utf-8_*_
-
-#name = raw_input(&quot;What is your name?&quot;) #only on python 2.x
-name = input(&quot;What is your name?&quot;)
-print(&quot;Hello &quot; + name )
-</code></pre><p>输入密码时，如果想要不可见，需要利用getpass 模块中的 getpass方法，即：</p>
-<pre><code>#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-import getpass
-
-# 将用户输入的内容赋值给 name 变量
-pwd = getpass.getpass(&quot;请输入密码：&quot;)
-
-# 打印输入的内容
-print(pwd)
-</code></pre><h1 id="8-模块初始"><a href="#8-模块初始" class="headerlink" title="8.模块初始"></a>8.模块初始</h1><p>Python的强大之处在于他有非常丰富和强大的标准库和第三方库，几乎你想实现的任何功能都有相应的Python库支持，以后的课程中会深入讲解常用到的各种库，现在，我们先来象征性的学2个简单的。</p>
-<p><strong>sys</strong></p>
-<pre><code>#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-import sys
-
-print(sys.argv) 
-#输出
-$ python test.py helo world
-[&apos;test.py&apos;, &apos;helo&apos;, &apos;world&apos;]  #把执行脚本时传递的参数获取到了
-</code></pre><p><strong>os</strong></p>
-<pre><code>#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-import os
-
-os.system(&quot;df -h&quot;) #调用系统命令
-</code></pre><p><strong>结合使用：</strong></p>
-<pre><code>import os,sys
-os.system(&apos;&apos;.join(sys.argv[1:])) #把用户的输入的参数当作一条命令交给os.system来执行
-</code></pre><h1 id="9-pyc介绍"><a href="#9-pyc介绍" class="headerlink" title="9. .pyc介绍"></a>9. .pyc介绍</h1><p><strong>1. Python是一门解释型语言？</strong></p>
-<p>我初学Python时，听到的关于Python的第一句话就是，Python是一门解释性语言，我就这样一直相信下去，直到发现了<em>.pyc文件的存在。如果是解释型语言，那么生成的</em>.pyc文件是什么呢？c应该是compiled的缩写才对啊！</p>
-<p>为了防止其他学习Python的人也被这句话误解，那么我们就在文中来澄清下这个问题，并且把一些基础概念给理清。</p>
-<p><strong>2. 解释型语言和编译型语言</strong></p>
-<p>计算机是不能够识别高级语言的，所以当我们运行一个高级语言程序的时候，就需要一个“翻译机”来从事把高级语言转变成计算机能读懂的机器语言的过程。这个过程分成两类，第一种是编译，第二种是解释。</p>
-<p>编译型语言在程序执行之前，先会通过编译器对程序执行一个编译的过程，把程序转变成机器语言。运行时就不需要翻译，而直接执行就可以了。最典型的例子就是C语言。</p>
-<p>解释型语言就没有这个编译的过程，而是在程序运行的时候，通过解释器对程序逐行作出解释，然后直接运行，最典型的例子是Ruby。</p>
-<p>通过以上的例子，我们可以来总结一下解释型语言和编译型语言的优缺点，因为编译型语言在程序运行之前就已经对程序做出了“翻译”，所以在运行时就少掉了“翻译”的过程，所以效率比较高。但是我们也不能一概而论，一些解释型语言也可以通过解释器的优化来在对程序做出翻译时对整个程序做出优化，从而在效率上超过编译型语言。</p>
-<p>此外，随着Java等基于虚拟机的语言的兴起，我们又不能把语言纯粹地分成解释型和编译型这两种。</p>
-<p>用Java来举例，Java首先是通过编译器编译成字节码文件，然后在运行时通过解释器给解释成机器文件。所以我们说Java是一种先编译后解释的语言。</p>
-<p><strong>3. Python到底是什么</strong></p>
-<p>其实Python和Java/C#一样，也是一门基于虚拟机的语言，我们先来从表面上简单地了解一下Python程序的运行过程吧。</p>
-<p>当我们在命令行中输入python hello.py时，其实是激活了Python的“解释器”，告诉“解释器”：你要开始工作了。可是在“解释”之前，其实执行的第一项工作和Java一样，是编译。</p>
-<p>熟悉Java的同学可以想一下我们在命令行中如何执行一个Java的程序：</p>
-<p>javac hello.java</p>
-<p>java hello</p>
-<p>只是我们在用Eclipse之类的IDE时，将这两部给融合成了一部而已。其实Python也一样，当我们执行python hello.py时，他也一样执行了这么一个过程，所以我们应该这样来描述Python，Python是一门先编译后解释的语言。</p>
-<p><strong>4. 简述Python的运行过程</strong></p>
-<p>在说这个问题之前，我们先来说两个概念，PyCodeObject和pyc文件。</p>
-<p>我们在硬盘上看到的pyc自然不必多说，而其实PyCodeObject则是Python编译器真正编译成的结果。我们先简单知道就可以了，继续向下看。</p>
-<p>当python程序运行时，编译的结果则是保存在位于内存中的PyCodeObject中，当Python程序运行结束时，Python解释器则将PyCodeObject写回到pyc文件中。</p>
-<p>当python程序第二次运行时，首先程序会在硬盘中寻找pyc文件，如果找到，则直接载入，否则就重复上面的过程。</p>
-<p>所以我们应该这样来定位PyCodeObject和pyc文件，我们说pyc文件其实是PyCodeObject的一种持久化保存方式。</p>
-<h1 id="10-数据类型初始"><a href="#10-数据类型初始" class="headerlink" title="10.数据类型初始"></a>10.数据类型初始</h1><h2 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h2><ul>
-<li>int（整型）</li>
-</ul>
-<p>　　在32位机器上，整数的位数为32位，取值范围为-2<strong>31～2</strong>31-1，即-2147483648～2147483647<br>　　在64位系统上，整数的位数为64位，取值范围为-2<strong>63～2</strong>63-1，即-9223372036854775808～9223372036854775807</p>
+<p>“U”表示在读取时，可以将 \r \n \r\n自动转换成 \n （与 r 或 r+ 模式同使用）</p>
 <ul>
-<li><p>long（长整型）<br>　　跟C语言不同，Python的长整数没有指定位宽，即：Python没有限制长整数数值的大小，但实际上由于机器内存有限，我们使用的长整数数值不可能无限大。<br>　　注意，自从Python2.2起，如果整数发生溢出，Python会自动将整数数据转换为长整数，所以如今在长整数数据后面不加字母L也不会导致严重后果了。</p>
-</li>
-<li><p>float（浮点型）</p>
-<pre><code>先扫盲 http://www.cnblogs.com/alex3714/articles/5895848.html 
-</code></pre><p>　　浮点数用来处理实数，即带有小数的数字。类似于C语言中的double类型，占8个字节（64位），其中52位表示底，11位表示指数，剩下的一位表示符号。</p>
-</li>
-<li><p>complex（复数）<br>　　复数由实数部分和虚数部分组成，一般形式为x＋yj，其中的x是复数的实数部分，y是复数的虚数部分，这里的x和y都是实数。<br>注：Python中存在小数字池：-5 ～ 257</p>
-</li>
+<li>rU</li>
+<li>r+U</li>
+<li>“b”表示处理二进制文件（如：FTP发送上传ISO镜像文件，linux可忽略，windows处理二进制文件时需标注）</li>
 </ul>
-<h2 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h2><p>　　真或假<br>　　1 或 0</p>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>“hello world”<br>万恶的字符串拼接：<br>python中的字符串在C语言中体现为是一个字符数组，每次创建字符串时候需要在内存中开辟一块连续的空，并且一旦需要修改字符串的话，就需要再次开辟空间，万恶的+号每出现一次就会在内从中重新开辟一块空间。<br>字符串格式化输出</p>
-<pre><code>name = &quot;alex&quot;
-print &quot;i am %s &quot; % name
+<hr>
+<pre><code>rb
+wb
+ab
+</code></pre><p>with语句：</p>
+<pre><code># 为了避免打开文件后忘记关闭，可以通过管理上下文，即：
 
-#输出: i am alex
-#字符串是 %s;整数 %d;浮点数%f
-</code></pre><p><strong>字符串常用功能：</strong></p>
-<ul>
-<li>移除空白</li>
-<li>分割</li>
-<li>长度</li>
-<li>索引</li>
-<li>切片</li>
-</ul>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>创建列表：</p>
-<pre><code>name_list = [&apos;alex&apos;, &apos;seven&apos;, &apos;eric&apos;]
-</code></pre><p>或<br>    name_list ＝ list([‘alex’, ‘seven’, ‘eric’])</p>
-<p>基本操作：</p>
-<ul>
-<li><strong>索引</strong></li>
-<li><strong>切片</strong></li>
-<li><strong>追加</strong></li>
-<li><strong>删除</strong></li>
-<li><strong>长度</strong></li>
-<li><strong>切片</strong></li>
-<li><strong>循环</strong></li>
-<li><strong>包含</strong></li>
-<li><h2 id="元组-不可变列表"><a href="#元组-不可变列表" class="headerlink" title="元组(不可变列表)"></a>元组(不可变列表)</h2><p>创建元组：</p>
-<p>  ages = (11, 22, 33, 44, 55)<br>或</p>
-<p>  ages = tuple((11, 22, 33, 44, 55))</p>
+with open(&apos;log&apos;,&apos;r&apos;) as f:
+     ...
+</code></pre><p>在Python 2.7 后，with又支持同时对多个文件的上下文进行管理，即：</p>
+<pre><code>with open(&apos;log1&apos;) as obj1, open(&apos;log2&apos;) as obj2:
+    pass
+</code></pre><h1 id="6-字符编码与转码"><a href="#6-字符编码与转码" class="headerlink" title="6.字符编码与转码"></a>6.字符编码与转码</h1><ol>
+<li><p>在python2默认编码是ASCII, python3里默认是unicode</p>
 </li>
-</ul>
-<h2 id="字典（无序）"><a href="#字典（无序）" class="headerlink" title="字典（无序）"></a>字典（无序）</h2><p>创建字典：</p>
-<pre><code>person = {&quot;name&quot;: &quot;mr.wu&quot;, &apos;age&apos;: 18}
-</code></pre><p>或</p>
-<pre><code>person = dict({&quot;name&quot;: &quot;mr.wu&quot;, &apos;age&apos;: 18})
-</code></pre><p>常用操作：</p>
-<ul>
-<li><strong>索引</strong></li>
-<li><strong>新增</strong></li>
-<li><strong>删除</strong></li>
-<li><strong>键、值、键值对</strong></li>
-<li><strong>循环</strong></li>
-<li><strong>长度</strong></li>
-</ul>
-<h1 id="11-数据运算"><a href="#11-数据运算" class="headerlink" title="11.数据运算"></a>11.数据运算</h1><h2 id="算术运算"><a href="#算术运算" class="headerlink" title="算术运算"></a>算术运算</h2><ul>
-<li><ul>
-<li>两个对象相加 </li>
-</ul>
+<li><p>unicode 分为 utf-32(占4个字节),utf-16(占两个字节)，utf-8(占1-4个字节)， so utf-16就是现在最常用的unicode版本， 不过在文件里存的还是utf-8，因为utf8省空间</p>
 </li>
-<li><ul>
-<li>两个数字相减</li>
-</ul>
+<li><p>在py3中encode,在转码的同时还会把string 变成bytes类型，decode在解码的同时还会把bytes变回string </p>
 </li>
-<li><ul>
-<li>数字相乘，或字符串相乘返回重复的字符串</li>
-</ul>
-</li>
-<li>/  除法运算，3.x中可做浮点型运算，2.x中为整除</li>
-<li>%  取模，5%2 结果为1</li>
-<li>** 幂运算</li>
-<li>// 整除运算 9/4 结果为2</li>
-</ul>
-<h2 id="比较运算"><a href="#比较运算" class="headerlink" title="比较运算"></a>比较运算</h2><ul>
-<li>==  等于</li>
-<li>!=  不等于</li>
-<li>&lt;&gt;  不等于</li>
-<li><blockquote>
-<p>  大于</p>
-</blockquote>
-</li>
-<li>&lt;   小于</li>
-<li><blockquote>
-<p>=  大于等于</p>
-</blockquote>
-</li>
-<li>&lt;=  小于等于</li>
-</ul>
-<h2 id="赋值运算"><a href="#赋值运算" class="headerlink" title="赋值运算"></a>赋值运算</h2><ul>
-<li>=</li>
-<li>+=</li>
-<li>-=</li>
-<li>*=</li>
-<li>/=</li>
-<li>%=</li>
-<li>**=</li>
-<li>//=</li>
-</ul>
-<h2 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h2><ul>
-<li>and  两个条件都符合，返回true</li>
-<li>or   两个条件符合一个，返回true</li>
-<li>not  如何为false，则返回true</li>
-</ul>
-<h2 id="成员运算"><a href="#成员运算" class="headerlink" title="成员运算"></a>成员运算</h2><ul>
-<li>in  x in y， x在y序列中返回true</li>
-<li>not in  x in y， x不在y序列中返回true</li>
-</ul>
-<h2 id="身份运算"><a href="#身份运算" class="headerlink" title="身份运算"></a>身份运算</h2><ul>
-<li>is</li>
-<li>is not</li>
-</ul>
-<h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><ul>
-<li>&amp;</li>
-<li>|</li>
-<li>^</li>
-<li>~</li>
-<li>&lt;&lt;</li>
-<li>>&gt;</li>
-</ul>
-<h2 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h2><ul>
-<li>**    指数 (最高优先级)</li>
-<li>~ + -    按位翻转, 一元加号和减号 (最后两个的方法名为 +@ 和 -@)</li>
-<li><ul>
-<li>/ % //    乘，除，取模和取整除</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li>加法减法</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>>&gt; \&lt;&lt;    右移，左移运算符</li>
-<li>&amp;    位 ‘AND’</li>
-<li>^ |    位运算符</li>
-<li>&lt;= &lt; &gt; &gt;=    比较运算符</li>
-<li>&lt;&gt; == !=    等于运算符</li>
-<li>= %= /= //= -= += <em>= *</em>=    赋值运算符</li>
-<li>is is not    身份运算符</li>
-<li>in not in    成员运算符</li>
-<li>not or and    逻辑运算符</li>
-</ul>
-<h1 id="12-表达式if-else语句"><a href="#12-表达式if-else语句" class="headerlink" title="12.表达式if..else语句"></a>12.表达式if..else语句</h1><pre><code>age = int(input(&apos;Please enter your age:&apos;))
-if age &lt;= 20:
-    print(&apos;小于等于20&apos;)
-elif age &lt;=  40:
-    print(&apos;小于等于40&apos;)
-else:
-    print(&apos;大于40&apos;)
-</code></pre><h1 id="13-表达式for循环"><a href="#13-表达式for循环" class="headerlink" title="13.表达式for循环"></a>13.表达式for循环</h1><pre><code>for i in range(10):
-    print(&quot;loop: &quot;,i)
-</code></pre><h1 id="14-break-and-continue"><a href="#14-break-and-continue" class="headerlink" title="14.break and continue"></a>14.break and continue</h1><pre><code>count = 1
-while count:
-    print(&quot;loop: &quot;,count)
-    count += 1
-    if count == 10:    break
-# 当count等于10时，跳出循环，结束程序
-</code></pre><hr>
-<pre><code>count = 1
-while count:
-    print(&quot;loop: &quot;,count)
-    count += 1
-    if count == 10:
-        count = 1
-        continue
-# 当count等于10时，跳出本次循环，进行下一次循环
-</code></pre><h1 id="15-表达式while循环"><a href="#15-表达式while循环" class="headerlink" title="15.表达式while循环"></a>15.表达式while循环</h1><pre><code>count = 1
-while count:
-       print(&quot;loop: &quot;,count)
-       count += 1
-# 无线循环
+</ol>
+<hr>
+<pre><code>import sys
+print(sys.getdefaultencoding())
+
+msg = &quot;我爱北京天安门&quot;
+msg_byte = msg.encode()
+print(msg)
+print(msg_byte.decode())
+
+#输出结果：
+
+utf-8
+我爱北京天安门
+我爱北京天安门
 </code></pre>
         </div>
       </article>
