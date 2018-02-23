@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Leo">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="Day5-Python基础5"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="李大胖的博客"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>Day5-Python基础5 - 李大胖的博客</title>
+
+
+  <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://hexo.io/logo.svg" alt="李大胖的博客" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            Day5-Python基础5
+            
+          </h1>
+          <p class="posted-on">
+          2017-12-24
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/Python之路/" rel="tag">
+                  Python之路
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><ol>
+<li>模块介绍</li>
+<li>time &amp;datetime模块</li>
+<li>random</li>
+<li>os</li>
+<li>sys</li>
+<li>shutil</li>
+<li>json &amp; picle</li>
+<li>shelve</li>
+<li>xml处理</li>
+<li>yaml处理</li>
+<li>configparser</li>
+<li>hashlib</li>
+<li>subprocess</li>
+<li>logging模块</li>
+<li>re正则表达式</li>
+</ol>
+<h1 id="1-模块介绍"><a href="#1-模块介绍" class="headerlink" title="1. 模块介绍"></a>1. 模块介绍</h1><p>模块，用一砣代码实现了某个功能的代码集合。 </p>
+<p>类似于函数式编程和面向过程编程，函数式编程则完成一个功能，其他代码用来调用即可，提供了代码的重用性和代码间的耦合。而对于一个复杂的功能来，可能需要多个函数才能完成（函数又可以在不同的.py文件中），n个 .py 文件组成的代码集合就称为模块。</p>
+<p>如：os 是系统相关的模块；file是文件操作相关的模块</p>
+<p>模块分为三种：</p>
+<ul>
+<li>自定义模块</li>
+<li>内置标准模块（又称标准库）</li>
+<li>开源模块</li>
+</ul>
+<h1 id="2-time-amp-datetime模块"><a href="#2-time-amp-datetime模块" class="headerlink" title="2. time &amp;datetime模块"></a>2. time &amp;datetime模块</h1><pre><code>import time
+
+# print(time.clock()) #返回处理器时间,3.3开始已废弃 , 改成了time.process_time()测量处理器运算时间,不包括sleep时间,不稳定,mac上测不出来
+# print(time.altzone)  #返回与utc时间的时间差,以秒计算\
+# print(time.asctime()) #返回时间格式&quot;Fri Aug 19 11:14:16 2016&quot;,
+# print(time.localtime()) #返回本地时间 的struct time对象格式
+# print(time.gmtime(time.time()-800000)) #返回utc时间的struc时间对象格式
+
+# print(time.asctime(time.localtime())) #返回时间格式&quot;Fri Aug 19 11:14:16 2016&quot;,
+#print(time.ctime()) #返回Fri Aug 19 12:38:29 2016 格式, 同上
+
+
+# 日期字符串 转成  时间戳
+# string_2_struct = time.strptime(&quot;2016/05/22&quot;,&quot;%Y/%m/%d&quot;) #将 日期字符串 转成 struct时间对象格式
+# print(string_2_struct)
+# #
+# struct_2_stamp = time.mktime(string_2_struct) #将struct时间对象转成时间戳
+# print(struct_2_stamp)
+
+
+#将时间戳转为字符串格式
+# print(time.gmtime(time.time()-86640)) #将utc时间戳转换成struct_time格式
+# print(time.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;,time.gmtime()) ) #将utc struct_tim
+
+#时间加减
+import datetime
+
+# print(datetime.datetime.now()) #返回 2016-08-19 12:47:03.941925
+# print(datetime.date.fromtimestamp(time.time()) )  # 时间戳直接转成日期格式 2016-08-19
+# print(datetime.datetime.now() )
+# print(datetime.datetime.now() + datetime.timedelta(3)) #当前时间+3天
+# print(datetime.datetime.now() + datetime.timedelta(-3)) #当前时间-3天
+# print(datetime.datetime.now() + datetime.timedelta(hours=3)) #当前时间+3小时
+# print(datetime.datetime.now() + datetime.timedelta(minutes=30)) #当前时间+30分
+
+
+#
+# c_time  = datetime.datetime.now()
+# print(c_time.replace(minute=3,hour=2)) #时间替换
+</code></pre><h1 id="3-random"><a href="#3-random" class="headerlink" title="3. random"></a>3. random</h1><pre><code>随机数
+
+mport random
+print random.random()
+print random.randint(1,2)
+print random.randrange(1,10)
+生成随机验证码
+
+import random
+checkcode = &apos;&apos;
+for i in range(4):
+    current = random.randrange(0,4)
+    if current != i:
+        temp = chr(random.randint(65,90))
+    else:
+        temp = random.randint(0,9)
+    checkcode += str(temp)
+print checkcode
+</code></pre><h1 id="4-os"><a href="#4-os" class="headerlink" title="4. os"></a>4. os</h1><p>提供对操作系统进行调用的接口</p>
+<pre><code>os.getcwd() 获取当前工作目录，即当前python脚本工作的目录路径
+os.chdir(&quot;dirname&quot;)  改变当前脚本工作目录；相当于shell下cd
+os.curdir  返回当前目录: (&apos;.&apos;)
+os.pardir  获取当前目录的父目录字符串名：(&apos;..&apos;)
+os.makedirs(&apos;dirname1/dirname2&apos;)    可生成多层递归目录
+os.removedirs(&apos;dirname1&apos;)    若目录为空，则删除，并递归到上一级目录，如若也为空，则删除，依此类推
+os.mkdir(&apos;dirname&apos;)    生成单级目录；相当于shell中mkdir dirname
+os.rmdir(&apos;dirname&apos;)    删除单级空目录，若目录不为空则无法删除，报错；相当于shell中rmdir dirname
+os.listdir(&apos;dirname&apos;)    列出指定目录下的所有文件和子目录，包括隐藏文件，并以列表方式打印
+os.remove()  删除一个文件
+os.rename(&quot;oldname&quot;,&quot;newname&quot;)  重命名文件/目录
+os.stat(&apos;path/filename&apos;)  获取文件/目录信息
+os.sep    输出操作系统特定的路径分隔符，win下为&quot;\\&quot;,Linux下为&quot;/&quot;
+os.linesep    输出当前平台使用的行终止符，win下为&quot;\t\n&quot;,Linux下为&quot;\n&quot;
+os.pathsep    输出用于分割文件路径的字符串
+os.name    输出字符串指示当前使用平台。win-&gt;&apos;nt&apos;; Linux-&gt;&apos;posix&apos;
+os.system(&quot;bash command&quot;)  运行shell命令，直接显示
+os.environ  获取系统环境变量
+os.path.abspath(path)  返回path规范化的绝对路径
+os.path.split(path)  将path分割成目录和文件名二元组返回
+os.path.dirname(path)  返回path的目录。其实就是os.path.split(path)的第一个元素
+os.path.basename(path)  返回path最后的文件名。如何path以／或\结尾，那么就会返回空值。即os.path.split(path)的第二个元素
+os.path.exists(path)  如果path存在，返回True；如果path不存在，返回False
+os.path.isabs(path)  如果path是绝对路径，返回True
+os.path.isfile(path)  如果path是一个存在的文件，返回True。否则返回False
+os.path.isdir(path)  如果path是一个存在的目录，则返回True。否则返回False
+os.path.join(path1[, path2[, ...]])  将多个路径组合后返回，第一个绝对路径之前的参数将被忽略
+os.path.getatime(path)  返回path所指向的文件或者目录的最后存取时间
+os.path.getmtime(path)  返回path所指向的文件或者目录的最后修改时间
+</code></pre><h1 id="5-sys"><a href="#5-sys" class="headerlink" title="5. sys"></a>5. sys</h1><pre><code>sys.argv           命令行参数List，第一个元素是程序本身路径
+sys.exit(n)        退出程序，正常退出时exit(0)
+sys.version        获取Python解释程序的版本信息
+sys.maxint         最大的Int值
+sys.path           返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值
+sys.platform       返回操作系统平台名称
+sys.stdout.write(&apos;please:&apos;)
+val = sys.stdin.readline()[:-1]
+</code></pre><h1 id="6-shutil"><a href="#6-shutil" class="headerlink" title="6. shutil"></a>6. shutil</h1><p>高级的 文件、文件夹、压缩包 处理模块</p>
+<p>shutil.copyfileobj(fsrc, fdst[, length])<br>将文件内容拷贝到另一个文件中，可以部分内容</p>
+<pre><code>def copyfileobj(fsrc, fdst, length=16*1024):
+    &quot;&quot;&quot;copy data from file-like object fsrc to file-like object fdst&quot;&quot;&quot;
+    while 1:
+        buf = fsrc.read(length)
+        if not buf:
+            break
+        fdst.write(buf)
+</code></pre><p>shutil.copyfile(src, dst)<br>拷贝文件</p>
+<pre><code>def copyfile(src, dst):
+    &quot;&quot;&quot;Copy data from src to dst&quot;&quot;&quot;
+    if _samefile(src, dst):
+        raise Error(&quot;`%s` and `%s` are the same file&quot; % (src, dst))
+
+    for fn in [src, dst]:
+        try:
+            st = os.stat(fn)
+        except OSError:
+            # File most likely does not exist
+            pass
+        else:
+            # XXX What about other special files? (sockets, devices...)
+            if stat.S_ISFIFO(st.st_mode):
+                raise SpecialFileError(&quot;`%s` is a named pipe&quot; % fn)
+
+    with open(src, &apos;rb&apos;) as fsrc:
+        with open(dst, &apos;wb&apos;) as fdst:
+            copyfileobj(fsrc, fdst)
+</code></pre><p>shutil.copymode(src, dst)<br>仅拷贝权限。内容、组、用户均不变</p>
+<pre><code>def copymode(src, dst):
+    &quot;&quot;&quot;Copy mode bits from src to dst&quot;&quot;&quot;
+    if hasattr(os, &apos;chmod&apos;):
+        st = os.stat(src)
+        mode = stat.S_IMODE(st.st_mode)
+        os.chmod(dst, mode)
+</code></pre><p>shutil.copystat(src, dst)<br>拷贝状态的信息，包括：mode bits, atime, mtime, flags</p>
+<pre><code>def copystat(src, dst):
+    &quot;&quot;&quot;Copy all stat info (mode bits, atime, mtime, flags) from src to dst&quot;&quot;&quot;
+    st = os.stat(src)
+    mode = stat.S_IMODE(st.st_mode)
+    if hasattr(os, &apos;utime&apos;):
+        os.utime(dst, (st.st_atime, st.st_mtime))
+    if hasattr(os, &apos;chmod&apos;):
+        os.chmod(dst, mode)
+    if hasattr(os, &apos;chflags&apos;) and hasattr(st, &apos;st_flags&apos;):
+        try:
+            os.chflags(dst, st.st_flags)
+        except OSError, why:
+            for err in &apos;EOPNOTSUPP&apos;, &apos;ENOTSUP&apos;:
+                if hasattr(errno, err) and why.errno == getattr(errno, err):
+                    break
+            else:
+                raise
+</code></pre><p>shutil.copy(src, dst)<br>拷贝文件和权限</p>
+<pre><code>def copy(src, dst):
+    &quot;&quot;&quot;Copy data and mode bits (&quot;cp src dst&quot;).
+
+    The destination may be a directory.
+
+    &quot;&quot;&quot;
+    if os.path.isdir(dst):
+        dst = os.path.join(dst, os.path.basename(src))
+    copyfile(src, dst)
+    copymode(src, dst)
+</code></pre><p>shutil.copy2(src, dst)<br>拷贝文件和状态信息</p>
+<pre><code>def copy2(src, dst):
+    &quot;&quot;&quot;Copy data and all stat info (&quot;cp -p src dst&quot;).
+
+    The destination may be a directory.
+
+    &quot;&quot;&quot;
+    if os.path.isdir(dst):
+        dst = os.path.join(dst, os.path.basename(src))
+    copyfile(src, dst)
+    copystat(src, dst)
+</code></pre><p>shutil.ignore_patterns(*patterns)</p>
+<p>shutil.copytree(src, dst, symlinks=False, ignore=None)</p>
+<p>递归的去拷贝文件</p>
+<p>例如：copytree(source, destination, ignore=ignore_patterns(‘<em>.pyc’, ‘tmp</em>‘))</p>
+<pre><code>def ignore_patterns(*patterns):
+    &quot;&quot;&quot;Function that can be used as copytree() ignore parameter.
+
+    Patterns is a sequence of glob-style patterns
+    that are used to exclude files&quot;&quot;&quot;
+    def _ignore_patterns(path, names):
+        ignored_names = []
+        for pattern in patterns:
+            ignored_names.extend(fnmatch.filter(names, pattern))
+        return set(ignored_names)
+    return _ignore_patterns
+
+def copytree(src, dst, symlinks=False, ignore=None):
+    &quot;&quot;&quot;Recursively copy a directory tree using copy2().
+
+    The destination directory must not already exist.
+    If exception(s) occur, an Error is raised with a list of reasons.
+
+    If the optional symlinks flag is true, symbolic links in the
+    source tree result in symbolic links in the destination tree; if
+    it is false, the contents of the files pointed to by symbolic
+    links are copied.
+
+    The optional ignore argument is a callable. If given, it
+    is called with the `src` parameter, which is the directory
+    being visited by copytree(), and `names` which is the list of
+    `src` contents, as returned by os.listdir():
+
+        callable(src, names) -&gt; ignored_names
+
+    Since copytree() is called recursively, the callable will be
+    called once for each directory that is copied. It returns a
+    list of names relative to the `src` directory that should
+    not be copied.
+
+    XXX Consider this example code rather than the ultimate tool.
+
+    &quot;&quot;&quot;
+    names = os.listdir(src)
+    if ignore is not None:
+        ignored_names = ignore(src, names)
+    else:
+        ignored_names = set()
+
+    os.makedirs(dst)
+    errors = []
+    for name in names:
+        if name in ignored_names:
+            continue
+        srcname = os.path.join(src, name)
+        dstname = os.path.join(dst, name)
+        try:
+            if symlinks and os.path.islink(srcname):
+                linkto = os.readlink(srcname)
+                os.symlink(linkto, dstname)
+            elif os.path.isdir(srcname):
+                copytree(srcname, dstname, symlinks, ignore)
+            else:
+                # Will raise a SpecialFileError for unsupported file types
+                copy2(srcname, dstname)
+        # catch the Error from the recursive copytree so that we can
+        # continue with other files
+        except Error, err:
+            errors.extend(err.args[0])
+        except EnvironmentError, why:
+            errors.append((srcname, dstname, str(why)))
+    try:
+        copystat(src, dst)
+    except OSError, why:
+        if WindowsError is not None and isinstance(why, WindowsError):
+            # Copying file access times may fail on Windows
+            pass
+        else:
+            errors.append((src, dst, str(why)))
+    if errors:
+        raise Error, errors
+</code></pre><h1 id="7-json-amp-picle"><a href="#7-json-amp-picle" class="headerlink" title="7. json &amp; picle"></a>7. json &amp; picle</h1><p>用于序列化的两个模块</p>
+<ul>
+<li><p>json，用于字符串 和 python数据类型间进行转换<br>pickle，用于python特有的类型 和 python的数据类型间进行转换<br>Json模块提供了四个功能：dumps、dump、loads、load</p>
+</li>
+<li><p>pickle模块提供了四个功能：dumps、dump、loads、load</p>
+</li>
+</ul>
+<h1 id="8-shelve"><a href="#8-shelve" class="headerlink" title="8. shelve"></a>8. shelve</h1><p>shelve模块是一个简单的k,v将内存数据通过文件持久化的模块，可以持久化任何pickle可支持的python数据格式</p>
+<pre><code>import shelve
+
+d = shelve.open(&apos;shelve_test&apos;) #打开一个文件
+
+class Test(object):
+    def __init__(self,n):
+        self.n = n
+
+
+t = Test(123) 
+t2 = Test(123334)
+
+name = [&quot;alex&quot;,&quot;rain&quot;,&quot;test&quot;]
+d[&quot;test&quot;] = name #持久化列表
+d[&quot;t1&quot;] = t      #持久化类
+d[&quot;t2&quot;] = t2
+
+d.close()
+</code></pre><h1 id="9-xml处理"><a href="#9-xml处理" class="headerlink" title="9. xml处理"></a>9. xml处理</h1><p>xml是实现不同语言或程序之间进行数据交换的协议，跟json差不多，但json使用起来更简单，不过，古时候，在json还没诞生的黑暗年代，大家只能选择用xml呀，至今很多传统公司如金融行业的很多系统的接口还主要是xml。</p>
+<p>xml协议在各个语言里的都 是支持的，在python中可以用以下模块操作xml 　　</p>
+<pre><code>import xml.etree.ElementTree as ET
+
+tree = ET.parse(&quot;xmltest.xml&quot;)
+root = tree.getroot()
+print(root.tag)
+
+#遍历xml文档
+for child in root:
+    print(child.tag, child.attrib)
+    for i in child:
+        print(i.tag,i.text)
+
+#只遍历year 节点
+for node in root.iter(&apos;year&apos;):
+    print(node.tag,node.text)
+</code></pre><p>修改和删除xml文档内容</p>
+<pre><code>import xml.etree.ElementTree as ET
+
+tree = ET.parse(&quot;xmltest.xml&quot;)
+root = tree.getroot()
+
+#修改
+for node in root.iter(&apos;year&apos;):
+    new_year = int(node.text) + 1
+    node.text = str(new_year)
+    node.set(&quot;updated&quot;,&quot;yes&quot;)
+
+tree.write(&quot;xmltest.xml&quot;)
+
+
+#删除node
+for country in root.findall(&apos;country&apos;):
+   rank = int(country.find(&apos;rank&apos;).text)
+   if rank &gt; 50:
+     root.remove(country)
+
+tree.write(&apos;output.xml&apos;)
+</code></pre><p>自己创建xml文档</p>
+<pre><code>import xml.etree.ElementTree as ET
+
+new_xml = ET.Element(&quot;namelist&quot;)
+name = ET.SubElement(new_xml,&quot;name&quot;,attrib={&quot;enrolled&quot;:&quot;yes&quot;})
+age = ET.SubElement(name,&quot;age&quot;,attrib={&quot;checked&quot;:&quot;no&quot;})
+sex = ET.SubElement(name,&quot;sex&quot;)
+sex.text = &apos;33&apos;
+name2 = ET.SubElement(new_xml,&quot;name&quot;,attrib={&quot;enrolled&quot;:&quot;no&quot;})
+age = ET.SubElement(name2,&quot;age&quot;)
+age.text = &apos;19&apos;
+
+et = ET.ElementTree(new_xml) #生成文档对象
+et.write(&quot;test.xml&quot;, encoding=&quot;utf-8&quot;,xml_declaration=True)
+
+ET.dump(new_xml) #打印生成的格式
+</code></pre><h1 id="10-yaml处理"><a href="#10-yaml处理" class="headerlink" title="10. yaml处理"></a>10. yaml处理</h1><p>Python也可以很容易的处理ymal文档格式，只不过需要安装一个模块，参考文档：<a href="http://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank" rel="external">http://pyyaml.org/wiki/PyYAMLDocumentation</a> </p>
+<h1 id="11-configparser"><a href="#11-configparser" class="headerlink" title="11. configparser"></a>11. configparser</h1><p>用于生成和修改常见配置文档，当前模块的名称在 python 3.x 版本中变更为 configparser。</p>
+<p>来看一个好多软件的常见文档格式如下:</p>
+<pre><code>[DEFAULT]
+ServerAliveInterval = 45
+Compression = yes
+CompressionLevel = 9
+ForwardX11 = yes
+
+[bitbucket.org]
+User = hg
+
+[topsecret.server.com]
+Port = 50022
+ForwardX11 = no
+</code></pre><p>如果想用python生成一个这样的文档怎么做呢？</p>
+<pre><code>import configparser
+
+config = configparser.ConfigParser()
+config[&quot;DEFAULT&quot;] = {&apos;ServerAliveInterval&apos;: &apos;45&apos;,
+                      &apos;Compression&apos;: &apos;yes&apos;,
+                     &apos;CompressionLevel&apos;: &apos;9&apos;}
+
+config[&apos;bitbucket.org&apos;] = {}
+config[&apos;bitbucket.org&apos;][&apos;User&apos;] = &apos;hg&apos;
+config[&apos;topsecret.server.com&apos;] = {}
+topsecret = config[&apos;topsecret.server.com&apos;]
+topsecret[&apos;Host Port&apos;] = &apos;50022&apos;     # mutates the parser
+topsecret[&apos;ForwardX11&apos;] = &apos;no&apos;  # same here
+config[&apos;DEFAULT&apos;][&apos;ForwardX11&apos;] = &apos;yes&apos;
+with open(&apos;example.ini&apos;, &apos;w&apos;) as configfile:
+   config.write(configfile)
+</code></pre><h1 id="12-hashlib"><a href="#12-hashlib" class="headerlink" title="12. hashlib"></a>12. hashlib</h1><h1 id="13-subprocess"><a href="#13-subprocess" class="headerlink" title="13. subprocess"></a>13. subprocess</h1><p>subprocess被用来替换一些老的模块和函数，如：os.system、os.spawn<em>、os.popen</em>、popen2.<em>、commands.</em>。可见，subprocess是被推荐使用的模块。</p>
+<pre><code>#执行命令，返回命令执行状态 ， 0 or 非0
+&gt;&gt;&gt; retcode = subprocess.call([&quot;ls&quot;, &quot;-l&quot;])
+
+#执行命令，如果命令结果为0，就正常返回，否则抛异常
+&gt;&gt;&gt; subprocess.check_call([&quot;ls&quot;, &quot;-l&quot;])
+0
+
+#接收字符串格式命令，返回元组形式，第1个元素是执行状态，第2个是命令结果 
+&gt;&gt;&gt; subprocess.getstatusoutput(&apos;ls /bin/ls&apos;)
+(0, &apos;/bin/ls&apos;)
+
+
+#接收字符串格式命令，并返回结果
+&gt;&gt;&gt; subprocess.getoutput(&apos;ls /bin/ls&apos;)
+&apos;/bin/ls&apos;
+
+#执行命令，并返回结果，注意是返回结果，不是打印，下例结果返回给res
+&gt;&gt;&gt; res=subprocess.check_output([&apos;ls&apos;,&apos;-l&apos;])
+&gt;&gt;&gt; res
+b&apos;total 0\ndrwxr-xr-x 12 alex staff 408 Nov 2 11:05 OldBoyCRM\n&apos;
+
+#上面那些方法，底层都是封装的subprocess.Popen
+poll()
+Check if child process has terminated. Returns returncode
+
+
+wait()
+Wait for child process to terminate. Returns returncode attribute.
+
+
+terminate() 杀掉所启动进程
+communicate() 等待任务结束
+
+stdin 标准输入
+
+stdout 标准输出
+
+stderr 标准错误
+
+pid
+The process ID of the child process.
+</code></pre><p>例子</p>
+<pre><code>&gt;&gt;&gt; p = subprocess.Popen(&quot;df -h|grep disk&quot;,stdin=subprocess.PIPE,stdout=subprocess.PIPE,shell=True)
+&gt;&gt;&gt; p.stdout.read()
+b&apos;/dev/disk1 465Gi 64Gi 400Gi 14% 16901472 104938142 14% /\n&apos;
+</code></pre><h1 id="14-logging模块"><a href="#14-logging模块" class="headerlink" title="14. logging模块"></a>14. logging模块</h1><p>很多程序都有记录日志的需求，并且日志中包含的信息即有正常的程序访问日志，还可能有错误、警告等信息输出，python的logging模块提供了标准的日志接口，你可以通过它存储各种格式的日志，logging的日志可以分为 debug(), info(), warning(), error() and critical() 5个级别，下面我们看一下怎么用。</p>
+<p>最简单用法:</p>
+<pre><code>import logging
+
+logging.warning(&quot;user [alex] attempted wrong password more than 3 times&quot;)
+logging.critical(&quot;server is down&quot;)
+
+#输出
+WARNING:root:user [alex] attempted wrong password more than 3 times
+CRITICAL:root:server is down
+</code></pre><p>如果想把日志写到文件里，也很简单</p>
+<pre><code>import logging
+
+logging.basicConfig(filename=&apos;example.log&apos;,level=logging.INFO)
+logging.debug(&apos;This message should go to the log file&apos;)
+logging.info(&apos;So should this&apos;)
+logging.warning(&apos;And this, too&apos;)
+
+#其中下面这句中的level=loggin.INFO意思是，把日志纪录级别设置为INFO，也就是说，只有比日志是INFO或比INFO级别更高的日志才会被纪录到文件里，在这个例子， 第一条日志是不会被纪录的，如果希望纪录debug的日志，那把日志级别改成DEBUG就行了。
+</code></pre><p>感觉上面的日志格式忘记加上时间啦，日志不知道时间怎么行呢，下面就来加上!</p>
+<pre><code>import logging
+logging.basicConfig(format=&apos;%(asctime)s %(message)s&apos;, datefmt=&apos;%m/%d/%Y %I:%M:%S %p&apos;)
+logging.warning(&apos;is when this event was logged.&apos;)
+
+#输出
+12/12/2010 11:46:36 AM is when this event was logged.
+</code></pre><h1 id="15-re正则表达式"><a href="#15-re正则表达式" class="headerlink" title="15. re正则表达式"></a>15. re正则表达式</h1><p>常用正则表达式符号</p>
+<pre><code>&apos;.&apos;     默认匹配除\n之外的任意一个字符，若指定flag DOTALL,则匹配任意字符，包括换行
+&apos;^&apos;     匹配字符开头，若指定flags MULTILINE,这种也可以匹配上(r&quot;^a&quot;,&quot;\nabc\neee&quot;,flags=re.MULTILINE)
+&apos;$&apos;     匹配字符结尾，或e.search(&quot;foo$&quot;,&quot;bfoo\nsdfsf&quot;,flags=re.MULTILINE).group()也可以
+&apos;*&apos;     匹配*号前的字符0次或多次，re.findall(&quot;ab*&quot;,&quot;cabb3abcbbac&quot;)  结果为[&apos;abb&apos;, &apos;ab&apos;, &apos;a&apos;]
+&apos;+&apos;     匹配前一个字符1次或多次，re.findall(&quot;ab+&quot;,&quot;ab+cd+abb+bba&quot;) 结果[&apos;ab&apos;, &apos;abb&apos;]
+&apos;?&apos;     匹配前一个字符1次或0次
+&apos;{m}&apos;   匹配前一个字符m次
+&apos;{n,m}&apos; 匹配前一个字符n到m次，re.findall(&quot;ab{1,3}&quot;,&quot;abb abc abbcbbb&quot;) 结果&apos;abb&apos;, &apos;ab&apos;, &apos;abb&apos;]
+&apos;|&apos;     匹配|左或|右的字符，re.search(&quot;abc|ABC&quot;,&quot;ABCBabcCD&quot;).group() 结果&apos;ABC&apos;
+&apos;(...)&apos; 分组匹配，re.search(&quot;(abc){2}a(123|456)c&quot;, &quot;abcabca456c&quot;).group() 结果 abcabca456c
+
+
+&apos;\A&apos;    只从字符开头匹配，re.search(&quot;\Aabc&quot;,&quot;alexabc&quot;) 是匹配不到的
+&apos;\Z&apos;    匹配字符结尾，同$
+&apos;\d&apos;    匹配数字0-9
+&apos;\D&apos;    匹配非数字
+&apos;\w&apos;    匹配[A-Za-z0-9]
+&apos;\W&apos;    匹配非[A-Za-z0-9]
+&apos;s&apos;     匹配空白字符、\t、\n、\r , re.search(&quot;\s+&quot;,&quot;ab\tc1\n3&quot;).group() 结果 &apos;\t&apos;
+
+&apos;(?P&lt;name&gt;...)&apos; 分组匹配 re.search(&quot;(?P&lt;province&gt;[0-9]{4})(?P&lt;city&gt;[0-9]{2})(?P&lt;birthday&gt;[0-9]{4})&quot;,&quot;371481199306143242&quot;).groupdict(&quot;city&quot;) 结果{&apos;province&apos;: &apos;3714&apos;, &apos;city&apos;: &apos;81&apos;, &apos;birthday&apos;: &apos;1993&apos;}
+</code></pre><p>最常用的匹配语法</p>
+<ul>
+<li>re.match 从头开始匹配</li>
+<li>re.search 匹配包含</li>
+<li>re.findall 把所有匹配到的字符放到以列表中的元素返回</li>
+<li>re.splitall 以匹配到的字符当做列表分隔符</li>
+<li>re.sub      匹配字符并替换</li>
+</ul>
+<p>反斜杠的困扰</p>
+<p>与大多数编程语言相同，正则表达式里使用”\”作为转义字符，这就可能造成反斜杠困扰。假如你需要匹配文本中的字符”\”，那么使用编程语言表示的正则表达式里将需要4个反斜杠”\\“：前两个和后两个分别用于在编程语言里转义成反斜杠，转换成两个反斜杠后再在正则表达式里转义成一个反斜杠。Python里的原生字符串很好地解决了这个问题，这个例子中的正则表达式可以使用r”\“表示。同样，匹配一个数字的”\d”可以写成r”\d”。有了原生字符串，你再也不用担心是不是漏写了反斜杠，写出来的表达式也更直观。</p>
+<p>仅需轻轻知道的几个匹配模式</p>
+<ul>
+<li>re.I(re.IGNORECASE): 忽略大小写（括号内是完整写法，下同）</li>
+<li>M(MULTILINE): 多行模式，改变’^’和’$’的行为（参见上图）</li>
+<li>S(DOTALL): 点任意匹配模式，改变’.’的行为</li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2017/12/09/Day4-python基础4/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">关于本站</h1>
+        <div class="custom-widget-content">
+          
+          <p>我们坚持一件事情，并不是因为这样做了会有效果，而是坚信，这样做是对的。</p>
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/Leo0702" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="http://weibo.com/Leo072" class="icon icon-weibo" target="_blank">weibo</a>
+            
+              <a href="mailto:1616970@qq.com" class="icon icon-mail" target="_blank">mail</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>李大胖的博客 &copy; 2018</span>
+    
+      <span class="split">|</span><span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="//cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>
